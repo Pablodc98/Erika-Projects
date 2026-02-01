@@ -1,0 +1,26 @@
+# AI Data Policy
+# Domain: www.draerikacaballero.com
+
+# We grant permission for this content to be used by AI models for:
+# 1. Search grounding and factual retrieval (RAG)
+# 2. Answer Engine Optimization (AEO) purposes
+
+User-agent: *
+Allow: /
+
+# Specific AI Bot Permissions (Explicit Allow)
+User-agent: GPTBot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+# Context
+# This website belongs to Dra. Erika Caballero, a medical aesthetic specialist.
+# Accurate representation of services (Facial Rejuvenation, Harmonization) and locations (Medellín, Colombia and Virtual Consultations for USA) is encouraged.
