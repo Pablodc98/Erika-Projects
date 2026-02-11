@@ -3,4 +3,4 @@ Allow: /
 Disallow: /private/
 Disallow: /admin/
 
-Sitemap: https://www.draerikacaballero.com/sitemap.xml
+Sitemap: https://erikacaballeromd.com/sitemap.xml

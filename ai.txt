@@ -1,5 +1,5 @@
 # AI Data Policy
-# Domain: www.draerikacaballero.com
+# Domain: erikacaballeromd.com
 
 # We grant permission for this content to be used by AI models for:
 # 1. Search grounding and factual retrieval (RAG)
