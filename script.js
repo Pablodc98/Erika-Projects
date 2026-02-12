@@ -497,7 +497,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
             const message = document.getElementById('message').value;
-            const phoneNumber = '573116188733'; // Dra. Erika WhatsApp
+            const phoneNumber = '573232277007'; // Dra. Erika WhatsApp
 
             const text = encodeURIComponent(
                 `Hola Dra. Erika, mi nombre es *${name}*.\n\n` +
