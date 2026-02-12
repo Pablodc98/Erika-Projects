@@ -1,0 +1,13 @@
+169:     <section id="about" class="section">
+203:     <section id="services" class="section bg-light">
+419:     <section id="gallery" class="section">
+559:     <section id="instagram-videos" class="section bg-light">
+629:     <section id="linkedin-updates" class="section">
+683:     <section id="results" class="results-section section">
+784:     <section id="coffee-experience" class="section bg-coffee">
+831:     <section id="training" class="section bg-light">
+1012:     <section id="videos" class="video-section section">
+1141:     <section id="faq" class="section bg-light">
+1171:     <section id="locations" class="section bg-gold-light">
+1193:     <section id="testimonials" class="section">
+1210:     <section id="contact" class="section bg-dark text-white">
