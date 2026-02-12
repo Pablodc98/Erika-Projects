@@ -563,4 +563,35 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+    // Video Section "Ver más" Toggle
+    const btnShowMore = document.getElementById('btn-show-more');
+    if (btnShowMore) {
+        btnShowMore.addEventListener('click', () => {
+            const hiddenVideos = document.querySelectorAll('.video-card.hidden-mobile');
+            const isExpanding = !btnShowMore.classList.contains('active');
+            
+            btnShowMore.classList.toggle('active');
+            
+            hiddenVideos.forEach(video => {
+                if (isExpanding) {
+                    video.classList.add('show-mobile');
+                    video.style.display = 'block';
+                } else {
+                    video.classList.remove('show-mobile');
+                    video.style.display = 'none';
+                }
+            });
+            
+            const btnText = btnShowMore.querySelector('span');
+            const currentLang = document.documentElement.lang || 'es';
+            
+            if (isExpanding) {
+                btnText.textContent = currentLang === 'es' ? 'Ver menos' : 'See less';
+            } else {
+                btnText.textContent = currentLang === 'es' ? 'Ver más videos' : 'See more videos';
+                // Scroll back to the top of the video section when collapsing
+                document.getElementById('videos').scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    }
 });
