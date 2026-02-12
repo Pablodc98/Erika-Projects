@@ -17,7 +17,7 @@ const translations = {
         education_title: "Formación y Membresías",
         treatments_title: "Procedimientos Especializados",
         services_title: "Servicios Exclusivos",
-        
+
         // Coffee Section
         coffee_title: "Experiencia de Café",
         coffee_subtitle: "Más que estética, cultura e historia",
@@ -28,7 +28,7 @@ const translations = {
         coffee_feature2_desc: "Aroma y sabor que acompañan tu momento de cuidado personal.",
         coffee_feature3_title: "Cultura y Tradición",
         coffee_feature3_desc: "Honramos la historia detrás de cada taza servida con amor.",
-        
+
         // Treatments Accordion
         proc_botox_title: "Toxina Botulínica (Botox)",
         proc_botox_desc: "Se trata de una neurotoxina producida por una bacteria, el Clostridium botulinum, que actúa produciendo parálisis y relajación muscular. Ideal para suavizar líneas de expresión.",
@@ -84,7 +84,7 @@ const translations = {
         linkedin_post3_title: "Congreso Internacional",
         linkedin_post3_desc: "Compartiendo conocimientos y experiencias con colegas de todo el mundo.",
         read_article: "Leer Artículo",
-        
+
         // FAQ
         faq_title: "Preguntas Frecuentes",
         faq_q1: "¿Dónde se encuentran ubicados sus consultorios?",
@@ -221,7 +221,7 @@ const translations = {
         linkedin_post3_desc: "Sharing knowledge and experiences with colleagues from around the world.",
         read_article: "Read Article",
         visit_clinic: "Visit Belle Medical Center",
-        
+
         // FAQ
         faq_title: "Frequently Asked Questions",
         faq_q1: "Where are your offices located?",
@@ -281,12 +281,12 @@ function updateLanguage(lang) {
             element.textContent = translations[lang][key];
         }
     });
-    
+
     // Update button text
     if (langToggleBtn) {
         langToggleBtn.textContent = lang === 'es' ? 'EN' : 'ES';
     }
-    
+
     // Update HTML lang attribute
     document.documentElement.lang = lang;
 }
@@ -339,7 +339,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const nextButton = carousel.querySelector('.next-btn');
         const prevButton = carousel.querySelector('.prev-btn');
         const indicatorsContainer = carousel.querySelector('.carousel-indicators');
-        
+
         // Create indicators
         if (indicatorsContainer) {
             indicatorsContainer.innerHTML = ''; // Clear existing
@@ -351,13 +351,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 indicatorsContainer.appendChild(indicator);
             });
         }
-        
+
         let indicators = indicatorsContainer ? Array.from(indicatorsContainer.children) : [];
         let currentSlideIndex = 0;
-        
+
         function updateSlidePosition() {
             track.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
-            
+
             // Update indicators
             if (indicators.length > 0) {
                 indicators.forEach((indicator, index) => {
@@ -369,13 +369,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
         }
-        
+
         function moveToSlide(index) {
             currentSlideIndex = index;
             updateSlidePosition();
             resetAutoPlay();
         }
-        
+
         function moveToNextSlide() {
             if (currentSlideIndex === slides.length - 1) {
                 currentSlideIndex = 0;
@@ -384,7 +384,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             updateSlidePosition();
         }
-        
+
         function moveToPrevSlide() {
             if (currentSlideIndex === 0) {
                 currentSlideIndex = slides.length - 1;
@@ -393,20 +393,20 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             updateSlidePosition();
         }
-        
+
         if (nextButton) nextButton.addEventListener('click', () => {
             moveToNextSlide();
             resetAutoPlay();
         });
-        
+
         if (prevButton) prevButton.addEventListener('click', () => {
             moveToPrevSlide();
             resetAutoPlay();
         });
-        
+
         // Auto Play
         let autoPlayInterval = setInterval(moveToNextSlide, 5000);
-        
+
         function resetAutoPlay() {
             clearInterval(autoPlayInterval);
             autoPlayInterval = setInterval(moveToNextSlide, 5000);
@@ -434,7 +434,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         const video = entry.target.querySelector('video');
                         if (video) {
                             stopCarouselOnMedia();
-                            video.play().catch(() => {}); // Ensure it plays when visible
+                            video.play().catch(() => { }); // Ensure it plays when visible
                         } else {
                             startCarouselOnMedia();
                         }
@@ -461,20 +461,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 e.stopPropagation();
             });
         });
-        
+
         // Touch Swipe Support
         let touchStartX = 0;
         let touchEndX = 0;
-        
+
         track.addEventListener('touchstart', e => {
             touchStartX = e.changedTouches[0].screenX;
         }, { passive: true });
-        
+
         track.addEventListener('touchend', e => {
             touchEndX = e.changedTouches[0].screenX;
             handleSwipe();
         }, { passive: true });
-        
+
         function handleSwipe() {
             if (touchEndX < touchStartX - 50) {
                 moveToNextSlide(); // Swipe Left
@@ -488,27 +488,37 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-    // Contact Form Handler
-    const contactForm = document.getElementById('contactForm');
+    // Contact Form WhatsApp Integration
+    const contactForm = document.getElementById('contact-form');
     if (contactForm) {
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
+
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
-            // const message = document.getElementById('message').value;
-            
-            // Simulation of sending
-            alert(currentLang === 'es' 
-                ? `Gracias ${name}, hemos recibido tu mensaje. Te contactaremos pronto a ${email}.` 
-                : `Thank you ${name}, we have received your message. We will contact you soon at ${email}.`);
-                
+            const message = document.getElementById('message').value;
+            const phoneNumber = '573116188733'; // Dra. Erika WhatsApp
+
+            const text = encodeURIComponent(
+                `Hola Dra. Erika, mi nombre es *${name}*.\n\n` +
+                `*Email:* ${email}\n` +
+                `*Mensaje:* ${message}\n\n` +
+                `Me gustaría recibir más información sobre sus servicios.`
+            );
+
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${text}`;
+
+            // Open WhatsApp in a new tab
+            window.open(whatsappUrl, '_blank');
+
+            // Reset form
             contactForm.reset();
         });
     }
 
     // Scroll Animation Observer
     const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
-    
+
     const revealObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -521,19 +531,19 @@ document.addEventListener('DOMContentLoaded', () => {
         threshold: 0.15, // Trigger when 15% visible
         rootMargin: "0px"
     });
-    
+
     revealElements.forEach(element => {
         revealObserver.observe(element);
     });
 
     // Accordion Logic
     const accordions = document.querySelectorAll('.accordion-header');
-    
+
     accordions.forEach(accordion => {
         accordion.addEventListener('click', () => {
             const item = accordion.parentElement;
             const content = item.querySelector('.accordion-content');
-            
+
             // Close other items
             document.querySelectorAll('.accordion-item').forEach(otherItem => {
                 if (otherItem !== item && otherItem.classList.contains('active')) {
@@ -541,10 +551,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     otherItem.querySelector('.accordion-content').style.maxHeight = null;
                 }
             });
-            
+
             // Toggle current item
             item.classList.toggle('active');
-            
+
             if (item.classList.contains('active')) {
                 content.style.maxHeight = content.scrollHeight + "px";
             } else {
@@ -569,9 +579,9 @@ document.addEventListener('DOMContentLoaded', () => {
         btnShowMore.addEventListener('click', () => {
             const hiddenVideos = document.querySelectorAll('.video-card.hidden-mobile');
             const isExpanding = !btnShowMore.classList.contains('active');
-            
+
             btnShowMore.classList.toggle('active');
-            
+
             hiddenVideos.forEach(video => {
                 if (isExpanding) {
                     video.classList.add('show-mobile');
@@ -581,10 +591,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     video.style.display = 'none';
                 }
             });
-            
+
             const btnText = btnShowMore.querySelector('span');
             const currentLang = document.documentElement.lang || 'es';
-            
+
             if (isExpanding) {
                 btnText.textContent = currentLang === 'es' ? 'Ver menos' : 'See less';
             } else {
