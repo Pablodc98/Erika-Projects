@@ -407,6 +407,56 @@ document.addEventListener('DOMContentLoaded', () => {
             clearInterval(autoPlayInterval);
             autoPlayInterval = setInterval(moveToNextSlide, 5000);
         }
+
+        // Handle training carousel specific logic (stop on video)
+        if (carousel.classList.contains('training-carousel')) {
+            const stopCarouselOnMedia = () => {
+                clearInterval(autoPlayInterval);
+            };
+
+            const startCarouselOnMedia = () => {
+                resetAutoPlay();
+            };
+
+            // Intersection Observer to stop carousel when a card with video is active
+            const observerOptions = {
+                root: carousel,
+                threshold: 0.7
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const video = entry.target.querySelector('video');
+                        if (video) {
+                            stopCarouselOnMedia();
+                            video.play().catch(() => {}); // Ensure it plays when visible
+                        } else {
+                            startCarouselOnMedia();
+                        }
+                    }
+                });
+            }, observerOptions);
+
+            slides.forEach(slide => observer.observe(slide));
+        }
+
+        // Pause autoplay when video is playing (manual interaction)
+        const videos = track.querySelectorAll('video');
+        videos.forEach(video => {
+            video.addEventListener('play', () => {
+                clearInterval(autoPlayInterval);
+            });
+            video.addEventListener('pause', () => {
+                if (!carousel.classList.contains('training-carousel')) {
+                    resetAutoPlay();
+                }
+            });
+            // Stop propagation of clicks on video to prevent carousel from moving
+            video.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+        });
         
         // Touch Swipe Support
         let touchStartX = 0;

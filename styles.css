@@ -888,6 +888,141 @@ textarea.form-control {
     background-color: #f8f8f8;
 }
 
+/* Training Carousel Adjustments */
+.training-carousel {
+    max-width: 400px;
+    margin: 0 auto 60px auto;
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.4);
+    background: #000;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 0; /* Remove default padding that caused the gap */
+}
+
+.training-carousel .gallery-track {
+    gap: 0;
+}
+
+.training-carousel .gallery-card {
+    min-width: 100%;
+    aspect-ratio: 9 / 16;
+    position: relative;
+    background-color: #000;
+    display: block;
+    margin-bottom: 0;
+}
+
+.training-carousel .video-wrapper,
+.training-carousel .image-wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.training-carousel .video-caption {
+    position: absolute;
+    bottom: 0; /* Directo al fondo, sin saltos */
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, 
+        rgba(0, 0, 0, 0.9) 0%, 
+        rgba(0, 0, 0, 0.6) 30%, 
+        rgba(0, 0, 0, 0.2) 60%, 
+        transparent 100%);
+    color: #fff;
+    padding: 100px 20px 45px 20px; /* Más padding abajo para cubrir todo */
+    text-align: center;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.training-carousel .carousel-indicators {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 5px 12px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.training-carousel .video-caption h4 {
+    margin: 0;
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    font-size: 1.1rem;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    font-family: var(--font-heading);
+}
+
+.training-carousel video,
+.training-carousel img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+}
+
+.training-carousel .carousel-btn {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: #fff;
+    width: 46px;
+    height: 46px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.training-carousel .carousel-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-50%) scale(1.08);
+}
+
+.training-carousel .indicator {
+    width: 6px;
+    height: 6px;
+    background-color: rgba(255, 255, 255, 0.4);
+    margin: 0 4px;
+    transition: all 0.3s ease;
+}
+
+.training-carousel .indicator.active {
+    background-color: #fff;
+    width: 18px;
+    border-radius: 10px;
+}
+
+/* Mobile adjustments for training carousel */
+@media (max-width: 768px) {
+    .training-carousel {
+        max-width: 90%;
+    }
+    
+    .training-carousel .gallery-card {
+        aspect-ratio: 9 / 16;
+    }
+}
+
+/* Mobile adjustments for training carousel */
+@media (max-width: 768px) {
+    .training-carousel {
+        max-width: 95%;
+    }
+    
+    .training-carousel .gallery-card {
+        height: 350px; /* Even more compact on mobile */
+    }
+}
+
 .carousel-btn {
     position: absolute;
     top: 50%;
