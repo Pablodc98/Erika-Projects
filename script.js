@@ -14,7 +14,13 @@ const translations = {
         about_text: "Soy la Dra. Erika Caballero, médica apasionada por la estética y la armonización facial. Con formación en la Corporación Universitaria Remington (2016) y una Maestría Internacional en Medicina Estética de Educa Business School (2022), mi objetivo es resaltar tu belleza natural.",
         about_desc1: "Con años de experiencia en el campo de la medicina estética, mi misión es ayudarte a sentirte mejor contigo misma a través de tratamientos seguros y efectivos.",
         about_desc2: "Combino la ciencia médica con una visión artística para lograr resultados armoniosos y naturales. Tu bienestar y confianza son mi prioridad.",
+        about_quote: '"No pueden existir grandes genios sin una mezcla de locura" <br><span>- Aristóteles</span>',
+        signature: "Erika Caballero",
         education_title: "Formación y Membresías",
+        edu_1: "Médico General - Corporación Universitaria Remington (2016)",
+        edu_2: "Maestría Internacional en Medicina Estética - Educa Business School (2022)",
+        edu_3: "Miembro de la SIRF (2023)",
+        edu_4: "Entrenamiento Superior de Dermotocosmiatría",
         treatments_title: "Procedimientos Especializados",
         services_title: "Servicios Exclusivos",
 
@@ -132,7 +138,8 @@ const translations = {
         video_quality_1_title: "Calidad Certificada 1",
         video_quality_1_desc: "Insumos médicos de primera categoría.",
         video_quality_2_title: "Calidad Certificada 2",
-        video_quality_2_desc: "Excelencia en cada detalle del tratamiento."
+        video_quality_2_desc: "Excelencia en cada detalle del tratamiento.",
+        video_fallback: "Tu navegador no soporta el elemento de video."
     },
     en: {
         nav_home: "Home",
@@ -150,7 +157,13 @@ const translations = {
         about_text: "I am Dr. Erika Caballero, a physician passionate about aesthetics and facial harmonization. With training at Remington University Corporation (2016) and an International Master's in Aesthetic Medicine from Educa Business School (2022), my goal is to highlight your natural beauty.",
         about_desc1: "With years of experience in the field of aesthetic medicine, my mission is to help you feel better about yourself through safe and effective treatments.",
         about_desc2: "I combine medical science with an artistic vision to achieve harmonious and natural results. Your well-being and confidence are my priority.",
+        about_quote: '"There can be no great geniuses without a mixture of madness" <br><span>- Aristotle</span>',
+        signature: "Erika Caballero",
         education_title: "Education & Memberships",
+        edu_1: "General Physician - Remington University Corporation (2016)",
+        edu_2: "International Master's in Aesthetic Medicine - Educa Business School (2022)",
+        edu_3: "Member of SIRF (2023)",
+        edu_4: "Superior Training in Dermocosmiatry",
         treatments_title: "Specialized Procedures",
         services_title: "Exclusive Services",
 
@@ -244,6 +257,17 @@ const translations = {
         form_email: "Email",
         form_message: "Message",
         form_btn: "Send Message",
+        videos_title: "Learn More",
+        video_intro_title: "Welcome",
+        video_intro_desc: "Meet Dr. Erika and our philosophy.",
+        video_tourism_title: "Aesthetic Tourism",
+        video_tourism_desc: "Medellín: The world capital of aesthetic medicine.",
+        video_natural_title: "Natural Results",
+        video_natural_desc: "Harmony and balance in every treatment.",
+        video_quality_title: "High Quality",
+        video_quality_desc: "Premium products for your safety.",
+        video_certified_title: "Certification",
+        video_certified_desc: "Conscious and responsible use.",
         video_extraction_title: "Lesion Extraction",
         video_extraction_desc: "Safe removal of moles and warts.",
         video_peeling_title: "Advanced Peeling",
@@ -264,7 +288,8 @@ const translations = {
         video_quality_1_title: "Certified Quality 1",
         video_quality_1_desc: "First-class medical supplies.",
         video_quality_2_title: "Certified Quality 2",
-        video_quality_2_desc: "Excellence in every detail of the treatment."
+        video_quality_2_desc: "Excellence in every detail of the treatment.",
+        video_fallback: "Your browser does not support the video element."
     }
 };
 
@@ -278,7 +303,12 @@ function updateLanguage(lang) {
     elements.forEach(element => {
         const key = element.getAttribute('data-i18n');
         if (translations[lang][key]) {
-            element.textContent = translations[lang][key];
+            // Check if the key is 'about_quote' to use innerHTML
+            if (key === 'about_quote') {
+                element.innerHTML = translations[lang][key];
+            } else {
+                element.textContent = translations[lang][key];
+            }
         }
     });
 
